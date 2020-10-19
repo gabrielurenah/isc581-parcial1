@@ -1,7 +1,6 @@
-package com.pucmm.fragments;
+package com.pucmm.fragments.Fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.pucmm.fragments.Classes.Concept;
+import com.pucmm.fragments.R;
+
 public class BodyFragment extends Fragment {
-    final static String ARG_POSITION = "position";
+    public final static String ARG_POSITION = "position";
     int mCurrentPosition = -1;
 
     @Nullable
@@ -22,7 +24,7 @@ public class BodyFragment extends Fragment {
             mCurrentPosition = savedInstanceState.getInt(ARG_POSITION);
         }
 
-        return inflater.inflate(R.layout.article_fragment, container, false);
+        return inflater.inflate(R.layout.body_fragment, container, false);
     }
 
     @Override
@@ -31,10 +33,8 @@ public class BodyFragment extends Fragment {
 
         Bundle args = getArguments();
         boolean test2 = args != null;
-        Log.d("KLK", "args != null " + test2);
         if (args != null) {
             updateArticleView(args.getInt(ARG_POSITION));
-            Log.d("KLK", "args get int  " + args.getInt(ARG_POSITION));
         } else if (mCurrentPosition != -1) {
             updateArticleView(mCurrentPosition);
         }
@@ -43,8 +43,8 @@ public class BodyFragment extends Fragment {
     public void updateArticleView(int position) {
         TextView title = getActivity().findViewById(R.id.txt_title);
         TextView body = getActivity().findViewById(R.id.txt_body);
-        title.setText(TitlesFragment.concepts[position]);
-        body.setText(TitlesFragment.description[position]);
+        title.setText(Concept.concepts[position]);
+        body.setText(Concept.description[position]);
         mCurrentPosition = position;
     }
 

@@ -5,9 +5,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.pucmm.fragments.Fragments.BodyFragment;
+import com.pucmm.fragments.Fragments.TitlesFragment;
+
 public class MainActivity extends FragmentActivity implements TitlesFragment.OnHeadlineSelectedListener {
 
-    private int orientation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,18 +28,10 @@ public class MainActivity extends FragmentActivity implements TitlesFragment.OnH
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        orientation = getResources().getConfiguration().orientation;
-        
-    }
-
-    @Override
     public void onArticleSelected(int position) {
         BodyFragment af = (BodyFragment) getSupportFragmentManager().findFragmentById(R.id.article_fragment);
 
         if (af != null) {
-
             af.updateArticleView(position);
         } else {
             BodyFragment newFragment = new BodyFragment();
@@ -50,6 +44,5 @@ public class MainActivity extends FragmentActivity implements TitlesFragment.OnH
             transaction.addToBackStack(null);
             transaction.commit();
         }
-
     }
 }
